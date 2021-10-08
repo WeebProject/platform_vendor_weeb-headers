@@ -14,22 +14,8 @@
 # limitations under the License.
 #
 
-HEADERS_PATH := vendor/weeb-headers
-
-ifdef TARGET_PREBUILT_HEADERS
-$(warning TARGET_PREBUILT_HEADERS was set. \
-          Using prebuilt kernel headers.)
-
-ifeq ($(TARGET_KERNEL_VERSION)),3.18)
-    PRODUCT_VENDOR_KERNEL_HEADERS := $(HEADERS_PATH)/kernel-3.18/kernel-headers
-ifeq ($(TARGET_KERNEL_VERSION)),4.4)
-    PRODUCT_VENDOR_KERNEL_HEADERS := $(HEADERS_PATH)/kernel-4.4/kernel-headers
-ifeq ($(TARGET_KERNEL_VERSION)),4.9)
-    PRODUCT_VENDOR_KERNEL_HEADERS := $(HEADERS_PATH)/kernel-4.9/kernel-headers
-ifeq ($(TARGET_KERNEL_VERSION)),4.14)
-    PRODUCT_VENDOR_KERNEL_HEADERS := $(HEADERS_PATH)/kernel-4.14/kernel-headers
-endif
-endif
-endif
-endif
+ifneq ($(PRODUCT_KERNEL_VERSION),$(filter $(PRODUCT_KERNEL_VERSION),3.10 4.19 5.4))
+    PRODUCT_VENDOR_KERNEL_HEADERS := vendor/weeb-headers/kernel-$(PRODUCT_KERNEL_VERSION)/kernel-headers
+else
+    $(error TARGET_PREBUILT_HEADERS was set but PRODUCT_KERNEL_VERSION was not set.)
 endif
