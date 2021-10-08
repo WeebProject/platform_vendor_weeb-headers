@@ -22,10 +22,13 @@ $(warning TARGET_PREBUILT_HEADERS was set. \
 
 ifeq ($(TARGET_KERNEL_VERSION)),3.18)
     PRODUCT_VENDOR_KERNEL_HEADERS := $(HEADERS_PATH)/kernel-3.18/kernel-headers
+ifeq ($(TARGET_KERNEL_VERSION)),4.4)
+    PRODUCT_VENDOR_KERNEL_HEADERS := $(HEADERS_PATH)/kernel-4.4/kernel-headers
 ifeq ($(TARGET_KERNEL_VERSION)),4.9)
     PRODUCT_VENDOR_KERNEL_HEADERS := $(HEADERS_PATH)/kernel-4.9/kernel-headers
 ifeq ($(TARGET_KERNEL_VERSION)),4.14)
     PRODUCT_VENDOR_KERNEL_HEADERS := $(HEADERS_PATH)/kernel-4.14/kernel-headers
+endif
 endif
 endif
 endif
