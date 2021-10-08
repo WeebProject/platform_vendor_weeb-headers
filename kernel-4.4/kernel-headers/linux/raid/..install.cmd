@@ -1,0 +1,1 @@
+cmd_usr/include/linux/raid/.install := /bin/bash ../scripts/headers_install.sh ./usr/include/linux/raid ../include/uapi/linux/raid md_u.h md_p.h; /bin/bash ../scripts/headers_install.sh ./usr/include/linux/raid ./include/generated/uapi/linux/raid ; for F in ; do echo "$(pound)include <asm-generic/$$F>" > ./usr/include/linux/raid/$$F; done; touch usr/include/linux/raid/.install
